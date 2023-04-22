@@ -10,7 +10,7 @@ using System.Xml.Linq;
 using TheITBlog.Enums;
 using TheITBlog.Models;
 
-namespace WebDevBlog.Models
+namespace TheITBlog.Models
 {
     public class Post
     {

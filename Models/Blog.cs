@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using TheITBlog.Models;
-using WebDevBlog.Models;
 
 namespace TheITBlog.Models
 {

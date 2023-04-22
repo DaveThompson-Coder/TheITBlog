@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheITBlog.Models;
 
-namespace WebDevBlog.Models
+namespace TheITBlog.Models
 {
     public class Tag
     {
