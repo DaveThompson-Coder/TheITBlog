@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TheITBlog.Models;
 using WebDevBlog.Models;
 
 namespace TheITBlog.Data
@@ -13,5 +14,11 @@ namespace TheITBlog.Data
             : base(options)
         {
         }
+
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+
     }
 }

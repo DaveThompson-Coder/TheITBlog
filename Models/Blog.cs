@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using TheITBlog.Models;
 using WebDevBlog.Models;
 
 namespace TheITBlog.Models
@@ -14,7 +15,7 @@ namespace TheITBlog.Models
     {
         //id keys data properties
         public int Id { get; set; }                //primary key for this Model 'Blog' 
-        public string AuthorId { get; set; }     //foreign key for the author in the IdentityUser Model
+        public string BlogUserId { get; set; }     //foreign key for the BlogUser in the IdentityUser Model
 
         //blog post details data properties
         [Required]
@@ -44,7 +45,7 @@ namespace TheITBlog.Models
         public IFormFile Image { get; set; }
 
         //Navigation properties
-        public virtual BlogUser Author { get; set; }
+        public virtual BlogUser BlogUser { get; set; }
         public virtual ICollection<Post> Posts { get; set; } = new HashSet<Post>();
 
     }
