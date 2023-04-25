@@ -15,6 +15,7 @@ namespace TheITBlog.Models
     public class Post
     {
         public int Id { get; set; }             //Primary key to Post Table
+
         [Display(Name = "Choose a Blog Name")]
         public int BlogId { get; set; }         //foreign key to connect to Blog Table
         public string BlogUserId { get; set; }    //foreign key for the author in the BlogUser/IdentityUser Model
