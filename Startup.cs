@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TheITBlog.Data;
 using TheITBlog.Models;
+using TheITBlog.Services;
 
 namespace TheITBlog
 {
@@ -41,6 +42,11 @@ namespace TheITBlog
             services.AddControllersWithViews();
 
             services.AddRazorPages();
+
+            //Register my custom Dataservice class
+            services.AddScoped<DataService>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
