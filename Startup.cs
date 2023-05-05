@@ -46,6 +46,7 @@ namespace TheITBlog
 
             //Register my custom Dataservice class
             services.AddScoped<DataService>();
+            services.AddScoped<BlogSearchService>();
 
             //Register a preconfigured instance of MailSettings
             services.Configure<MailsSettings>(Configuration.GetSection("MailSettings"));
