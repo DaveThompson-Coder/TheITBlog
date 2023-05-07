@@ -67,7 +67,7 @@ namespace TheITBlog.Controllers
             }
 
             var pageNumber = page ?? 1;
-            var pageSize = 5;
+            var pageSize = 3;
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
             var posts = await _context.Posts
@@ -91,7 +91,10 @@ namespace TheITBlog.Controllers
                 .Include(p => p.Blog)
                 .Include(p => p.BlogUser)
                 .Include(p => p.Tags)
+                .Include(p => p.Comments)
+                .ThenInclude(c => c.BlogUser)
                 .FirstOrDefaultAsync(m => m.Slug == slug);
+
             if (post == null)
             {
                 return NotFound();
