@@ -37,7 +37,7 @@ namespace TheITBlog.Services
                                         c.BlogUser.Email.ToLower().Contains(searchTerm)));
             }
 
-            return posts.OrderByDescending(p => p.Created);
+            return posts.OrderBy(p => p.Created);
         }
     }
 }

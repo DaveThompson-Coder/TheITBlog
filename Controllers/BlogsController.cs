@@ -55,7 +55,7 @@ namespace TheITBlog.Controllers
             return View(blog);
         }
 
-        // GET: Blogs/Create - Shows Create View form to user
+        // GET: Blogs/Create - Shows the Create View form to user
         [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {

@@ -15,21 +15,21 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 @foreach(var blog in Model)
                 {
-                 <div class="post-preview">
-                    <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@blog.Id">
-                        <h2 class="post-title">
-                            @blog.Name
-                        </h2>
-                        <h3 class="post-subtitle">
-                            @blog.Description
-                        </h3>
-                    </a>
-                    <p class="post-meta">
-                        Authored by
-                        <a href="#">@blog.BlogUser.FullName</a>
-                        on @blog.Created.ToString("dd, MMM yyyy")
-                    </p>
-                </div>
+                     <div class="post-preview">
+                        <a asp-controller="Posts" asp-action="BlogPostIndex" asp-route-id="@blog.Id">
+                            <h2 class="post-title">
+                                @blog.Name
+                            </h2>
+                            <h3 class="post-subtitle">
+                                @blog.Description
+                            </h3>
+                        </a>
+                        <p class="post-meta">
+                            Authored by
+                            <a href="#">@blog.BlogUser.FullName</a>
+                            on @blog.Created.ToString("dd, MMM yyyy")
+                        </p>
+                    </div>
                 <!-- Divider-->
                 <hr class="my-4" />                   
                 }
@@ -40,13 +40,14 @@
     </div>
 </div>
 
-<!-- Add Paging controls here -->
+<!-- Text Paging Controls -->
 <div class="row">
     <div class="col h3">
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
     </div>
 </div>
 
+<!-- Clickable Paging Controls -->
 <div class="row">
     <div class="col">
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }),
@@ -54,6 +55,6 @@
             {
             LiElementClasses = new string[] {"page-item"},
             PageClasses = new string[] {"page-link"}
-            })
+            });
     </div>
 </div>

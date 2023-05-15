@@ -58,7 +58,7 @@ namespace TheITBlog.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-        //BlogPostIndex
+        // GET: BlogPostIndex
         public async Task<IActionResult> BlogPostIndex(int? id, int? page)
         {
             if (id == null)
@@ -67,17 +67,16 @@ namespace TheITBlog.Controllers
             }
 
             var pageNumber = page ?? 1;
-            var pageSize = 5;
+            var pageSize = 3;
 
             //var posts = _context.Posts.Where(p => p.BlogId == id).ToList();
             var posts = await _context.Posts
                 .Where(p => p.BlogId == id && p.ReadyStatus == ReadyStatus.ProductionReady)
-                .OrderByDescending(p => p.Created)
+                .OrderBy(p => p.Created)
                 .ToPagedListAsync(pageNumber, pageSize);
 
             return View(posts);
         }
-
 
         // GET: Posts/Details
         public async Task<IActionResult> Details(string slug)
@@ -132,12 +131,14 @@ namespace TheITBlog.Controllers
                 //Create a variable to store if an error has occurred
                 var validationError = false;
 
+                //Check empty slug-No Title entered
                 if (string.IsNullOrEmpty(slug))
                 {
                     validationError = true;
                     ModelState.AddModelError("", "The Title you provided cannot be used as it results in an empty slug.");
                 }                
                 
+                //Check for duplicate slug-Duplicate Title entered 
                 if (!_slugService.IsUnique(slug))
                 {
                     validationError = true;
@@ -151,7 +152,6 @@ namespace TheITBlog.Controllers
                 }
 
                 post.Slug = slug;
-
 
                 _context.Add(post);
                 await _context.SaveChangesAsync();
@@ -213,7 +213,8 @@ namespace TheITBlog.Controllers
             {
                 try
                 {
-                    //newPost is the original post that has been edited
+                    //newPost is actually a copy of the original post from the database
+                    //it was called newPost because it is the original edited to be a new post 
                     var newPost = await _context.Posts.Include(p => p.Tags).FirstOrDefaultAsync(p => p.Id == post.Id);
                     
                     newPost.Updated = DateTime.Now;

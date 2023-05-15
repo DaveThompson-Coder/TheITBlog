@@ -9,9 +9,13 @@
 
 <h1>Blog Index</h1>
 
-<p>
-    <a asp-action="Create">Create New Blog</a>
-</p>
+@if (User.IsInRole("Administrator"))
+{
+    <p>
+        <a asp-action="Create">Create New Blog</a>
+    </p>
+}
+
 <table class="table">
     <thead>
         <tr>
