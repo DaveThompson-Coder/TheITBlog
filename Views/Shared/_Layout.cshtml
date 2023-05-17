@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using TheITBlog.Enums
+@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+
+@{
+
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
 
@@ -7,18 +14,14 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>@ViewData["Title"] - IT Developers Blog</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <title>@ViewData["Title"]The IT Developers Blog</title>
     
     <!-- Boostrap CSS -->
-    <!--<link href="~/css/bootstrap.min.css" rel="stylesheet" />-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">--!>
 
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="~/css/styles.css" rel="stylesheet" />
-    <link href="~/css/custom.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
 
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -27,17 +30,21 @@
     <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" /> 
 
-    <!-- Summernote CSS code -->
-    <!--<link href="\css\summernote-bs4.min.css" rel="stylesheet" />-->
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+    <!-- Summernote CSS Reference -->
+    <link href="\css\summernote-bs4.min.css" rel="stylesheet" />
+    <!--<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">-->
+
+    <!-- Load main stylesheets -->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/custom.css" rel="stylesheet" />
 
 </head>
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
-        <div class="container px-4 px-lg-5">
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">The IT Developers Blog</a>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+        <div class="container px-1 px-lg-5">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">The IT Developer's Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -54,6 +61,7 @@
                         <a class="nav-link px-lg-3 py-3 py-lg-4" asp-controller="Home" asp-action="Contact">Contact</a>
                     </li>
                     
+                    <!-- Show Create Blog Menu Link for logged in admin -->
                     @if (User.IsInRole("Administrator"))
                     {
                         <li class="nav-item">
@@ -68,13 +76,13 @@
     </nav>
 
     <!-- Page Header-->
-    <header class="masthead" style="background-image: url('/images/home-bg.jpg')">
+    <header class="masthead" style="background-image: url(@ViewData["HeaderImage"])">
         <div class="container position-relative px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1>Clean Blog</h1>
-                        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                        <h1>@ViewData["MainText"]</h1>
+                        <span class="subheading">@ViewData["SubText"]</span>
 
                         <!-- Search Form -->
                         <form asp-action="SearchIndex" asp-controller="Posts">
@@ -92,8 +100,8 @@
         </div>
     </header>
 
-    <!-- Main Content-->
-        @RenderBody()
+    <!-- Main Content renders the main section for Each Page -->
+    @RenderBody()
 
     <!-- Footer-->
     <footer class="border-top">
@@ -131,29 +139,29 @@
             </div>
         </div>
     </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" 
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     
-    <!-- Bootstrap JS -->
-    <!--<script src="~/js/jquery.min.js"></script>-->
-    <!--<script src="~/js/bootstrap.bundle.min.js"></script>-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core theme JS-->
-    <script src="~/js/scripts.js"></script>
-
+    <!-- Bootstrap core JS -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
 
     <!-- Summernote JS -->
-    <!--<script src="\js\summernote-bs4.min.js"></script>-->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="\js\summernote-bs4.min.js"></script>
 
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
 
     <!--  Sweet Alert 2 cdn  -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Core theme JS-->
+    <script src="/js/scripts.js"></script>
     
     <!-- Custom scripts for this template -->
-    <script src="~/js/clean-blog.min.js"></script>
+    <script src="/js/clean-blog.min.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 
